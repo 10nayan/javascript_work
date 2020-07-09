@@ -1,0 +1,2 @@
+# javascript_work
+This is a simple game using html, vanilla javascript and bootstrap. User need to choose a Symbol from those 6 symbols available and should enter how much money he will bet on that symbol. Then user should press roll. If user chosen symbol occurrs more than one time after rolling he will get number of occurrence of chosen symbol multipled by amount he bet. If chosen symbol doesn't occurr or occurrs only once he will lose the money he bet on that symbol. 
