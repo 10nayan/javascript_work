@@ -1,38 +1,62 @@
 document.addEventListener('DOMContentLoaded',()=>{
 const button1=document.getElementById('button1');
+const sitton=document.getElementById('Sitton');
+const munda=document.getElementById('Munda');
+const iska=document.getElementById('Iska');
+const rohi=document.getElementById('Rohi');
+const dhandi=document.getElementById('Dhandi');
+const hotton=document.getElementById('Hotton');
+var idArray=[sitton,munda,iska,rohi,dhandi,hotton];
 button1.addEventListener('click',()=>{
-  var no1=Math.floor(Math.random()*6+1);
-  var no2=Math.floor(Math.random()*6+1);
-  var no3=Math.floor(Math.random()*6+1);
-  var no4=Math.floor(Math.random()*6+1);
-  var no5=Math.floor(Math.random()*6+1);
-  var no6=Math.floor(Math.random()*6+1);
-  var random1= roll(no1);
-  var random2= roll(no2);
-  var random3= roll(no3);
-  var random4= roll(no4);
-  var random5= roll(no5);
-  var random6= roll(no6);
-  document.getElementById('image1').innerHTML=`<img src="image/${random1}.png"/>`;
-  document.getElementById('image2').innerHTML=`<img src="image/${random2}.png"/>`;
-  document.getElementById('image3').innerHTML=`<img src="image/${random3}.png"/>`;
-  document.getElementById('image4').innerHTML=`<img src="image/${random4}.png"/>`;
-  document.getElementById('image5').innerHTML=`<img src="image/${random5}.png"/>`;
-  document.getElementById('image6').innerHTML=`<img src="image/${random6}.png"/>`;
-  randomlist=[random1,random2,random3,random4,random5,random6];
-  console.log(randomlist);
-  var choice=bet();
-  var money=parseInt(betMoney());
+  noArray=[];
+  symbolArray=[];
+  for (let i=0;i<6;i++){
+    noArray.push(getRandomNo());
+  }
+  console.log(noArray);
+  for (let i of noArray){
+    symbolArray.push(roll(i));
+  }
+  console.log(symbolArray);
+  document.getElementById('image1').innerHTML=`<img src="image/${symbolArray[0]}.png"/>`;
+  document.getElementById('image2').innerHTML=`<img src="image/${symbolArray[1]}.png"/>`;
+  document.getElementById('image3').innerHTML=`<img src="image/${symbolArray[2]}.png"/>`;
+  document.getElementById('image4').innerHTML=`<img src="image/${symbolArray[3]}.png"/>`;
+  document.getElementById('image5').innerHTML=`<img src="image/${symbolArray[4]}.png"/>`;
+  document.getElementById('image6').innerHTML=`<img src="image/${symbolArray[5]}.png"/>`;
+  var choice=getSignFromId();
+  var money=parseInt(getMoneyFromId());
   console.log(choice,money);
-  const count=elCounter(randomlist,choice);
+  const count=elCounter(symbolArray,choice);
   if (count>1){
     moneyWon=money*count;
-    alert(`Congrats You Won ,${moneyWon}`);
+    document.querySelector('h3').textContent=`Congrats You Won ${moneyWon}`;
   }else {
-    alert(`You lose  ${money}`);
+    document.querySelector('h3').textContent=`You lost ${money}`;
   }
+
 });
 console.log("working");
+function getMoneyFromId(){
+  var moneyChosen=0;
+  for (let i of idArray){
+    if (i.value!=0){
+      moneyChosen=i.value;
+      break;
+    }
+  }
+  return moneyChosen;
+}
+function getSignFromId(){
+  var signChosen="invalid";
+  for (let i of idArray){
+    if (i.value!=0){
+      signChosen=i.name;
+      break;
+    }
+  }
+  return signChosen;
+}
 });
 function roll(no){
   switch (no) {
@@ -55,14 +79,9 @@ function roll(no){
       return "Rohi";
   }
 }
-function bet (){
-  let userChoice=prompt("Enter a choice");
-  return userChoice;
-}
-function betMoney(){
-  let money=prompt("Enter amount to bet");
-  return money;
-}
 function elCounter(array,el){
   return array.filter(i=>i===el).length;
+}
+function getRandomNo(){
+  return Math.floor(Math.random()*6+1);
 }
