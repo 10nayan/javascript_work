@@ -42,6 +42,7 @@ function getMoneyFromId(){
   for (let i of idArray){
     if (i.value!=0){
       moneyChosen=i.value;
+      i.value="";
       break;
     }
   }
