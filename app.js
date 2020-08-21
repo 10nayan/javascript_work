@@ -45,6 +45,9 @@ function getMoneyFromId(){
       i.value="0";
       break;
     }
+    else if(i.value<0){
+      i.value="0";
+    }
   }
   return moneyChosen;
 }
