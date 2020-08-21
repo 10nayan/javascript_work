@@ -40,7 +40,7 @@ console.log("working");
 function getMoneyFromId(){
   var moneyChosen=0;
   for (let i of idArray){
-    if (i.value!=0){
+    if (i.value>0){
       moneyChosen=i.value;
       i.value="0";
       break;
