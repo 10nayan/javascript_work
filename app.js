@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded',()=>{
-var totalMoney=parseInt(prompt("How much money do you have?"));
+alert("Hi all, you are given 1000 Rupees as Diwali Gift from apps team, spent it wisely")
+var totalMoney=1000;
 const button1=document.getElementById('button1');
 const sitton=document.getElementById('Sitton');
 const munda=document.getElementById('Munda');
